@@ -47,11 +47,10 @@ INSERT INTO `ataxx_board` (`row`, `column`, `content`) VALUES
 --
 
 CREATE TABLE `paiktes` (
-  `idPaikth` int(11) NOT NULL,
+  `idPaikth` VARCHAR(16) NOT NULL,
   `etiketaPaikth` varchar(20) NOT NULL,
   `usernamePaikth` varchar(20) NOT NULL DEFAULT 'Εισαγωγή username',
-  `passwordPaikth` varchar(100) NOT NULL DEFAULT '',
-  `pieceColor` enum('white','black') NOT NULL
+  `passwordPaikth` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
