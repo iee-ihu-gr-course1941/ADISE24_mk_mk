@@ -438,6 +438,12 @@ function noValidMove(tag) {
     [-1, -1], [-1, 1], [1, -1], [1, 1]    // Diagonals: top-left, top-right, bottom-left, bottom-right
   ];
 
+  // Jumps: Horizontal, Vertical, and Diagonal (2 steps in each direction)
+  const jumps = [
+    [2, 0], [-2, 0], [0, 2], [0, -2],    // Horizontal and vertical jumps
+    [2, 2], [2, -2], [-2, 2], [-2, -2]    // Diagonal jumps
+  ];
+
   // Check all cells on the board
   for (let x = 0; x < 7; x++) {
     for (let y = 0; y < 7; y++) {
@@ -445,7 +451,7 @@ function noValidMove(tag) {
       const currentCell = document.getElementById(`${x},${y}`);
       if (currentCell.textContent !== tag) continue;
 
-      // Check each direction for possible valid moves using the validmove function
+      // Check each direction for possible valid adjacent moves (1 step in any direction)
       for (let [dx, dy] of directions) {
         const nx = x + dx;
         const ny = y + dy;
@@ -455,52 +461,28 @@ function noValidMove(tag) {
           const result = validmove(x, y, nx, ny); // Check validity using validmove function
           
           if (result.valid) {
-            return false; // Found a valid move, so the player has a valid move left
+            return false; // Found a valid adjacent move, so the player has a valid move left
           }
         }
       }
 
-      // Check if the piece can perform any valid jumps (horizontal, vertical, diagonal) using the validmove function
-      const dx = Math.abs(x - (x + 2));
-      const dy = Math.abs(y - (y + 2));
+      // Check for jumps (2 steps in any direction)
+      for (let [dx, dy] of jumps) {
+        const nx = x + dx;
+        const ny = y + dy;
 
-      // Horizontal jump (2 steps in the x-direction)
-      if (dx === 2 && dy === 0) {
-        const nx = x + 2;
-        if (nx >= 0 && nx < 7 && y >= 0 && y < 7) {
-          const result = validmove(x, y, nx, y); // Check for horizontal jump
-          if (result.valid) {
-            return false; // Valid horizontal jump
-          }
-        }
-      }
-
-      // Vertical jump (2 steps in the y-direction)
-      if (dy === 2 && dx === 0) {
-        const ny = y + 2;
-        if (x >= 0 && x < 7 && ny >= 0 && ny < 7) {
-          const result = validmove(x, y, x, ny); // Check for vertical jump
-          if (result.valid) {
-            return false; // Valid vertical jump
-          }
-        }
-      }
-
-      // Diagonal jump (2 steps diagonally)
-      if (dx === 2 && dy === 2) {
-        const nx = x + 2;
-        const ny = y + 2;
+        // Ensure the move is within bounds
         if (nx >= 0 && nx < 7 && ny >= 0 && ny < 7) {
-          const result = validmove(x, y, nx, ny); // Check for diagonal jump
+          const result = validmove(x, y, nx, ny); // Check for jump
           if (result.valid) {
-            return false; // Valid diagonal jump
+            return false; // Valid jump found, so the player has a valid move left
           }
         }
       }
     }
   }
 
-  // If no valid move or jump was found
+  // If no valid move or jump was found, return true (no valid moves left)
   return true;
 }
 
