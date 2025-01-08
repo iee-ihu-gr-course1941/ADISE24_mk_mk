@@ -473,9 +473,14 @@ function noValidMove(tag) {
 
         // Ensure the move is within bounds
         if (nx >= 0 && nx < 7 && ny >= 0 && ny < 7) {
-          const result = validmove(x, y, nx, ny); // Check for jump
-          if (result.valid) {
-            return false; // Valid jump found, so the player has a valid move left
+          const destinationCell = document.getElementById(`${nx},${ny}`);
+
+          // Check if the destination cell is empty (i.e., the cell is available for the jump)
+          if (destinationCell.textContent === "") {
+            const result = validmove(x, y, nx, ny); // Check for jump
+            if (result.valid) {
+              return false; // Valid jump found, so the player has a valid move left
+            }
           }
         }
       }
