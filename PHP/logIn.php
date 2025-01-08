@@ -49,26 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    if ($stmt_verify->num_rows === 0) {
         $response = array("status" => "error", "message" => "wrong username or password!");
-
+        
     } 
-    /* else {
-        // Initialize $stmt_update outside the if block
-       $stmt_update = $mysqli->prepare("UPDATE ataxx.paiktes SET idPaikth = ? WHERE usernamePaikth = ? ");
-        $stmt_update->bind_param("ss", $token, $username);
-       $stmt_update->execute();
-
-        if ($stmt_update->affected_rows > 0) {
-           $response = array("status" => "success", "message" => "successful login!");
-            $stmt_verify->close();
-            $stmt_update->close();
-        } else {
-            $response = array("status" => "error", "message" => "failed login!");
-        } */
+   
     
-
+       
+        $stmt_verify->close();
+            
+   
     echo json_encode($response);
-   // $stmt_verify->close();
-   // $stmt_update->close();
+
     }
 //}
 

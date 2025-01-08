@@ -1,15 +1,19 @@
 <?php
-$servername = "localhost";  // or the IP address of your database server
-$username = "root";  // Your MySQL username
-$password = "";  // Your MySQL password
-$dbname = "ataxx";  // Your database name
+$host='localhost';
+$db = 'ataxx';
+require_once "db_upass.php";
 
-// Create connection
-$mysqli = new mysqli($servername, $username, $password, $dbname);
+$user=$DB_USER;
+$pass=$DB_PASS;
 
-// Check connection
-if ($mysqli->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+
+if(gethostname()=='users.iee.ihu.gr') {
+	$mysqli = new mysqli($host, $user, $pass, $db,null,'/home/student/iee/2020/iee2020060/mysql/run/mysql.sock');
+} else {
+        $mysqli = new mysqli($host, $user, $pass, $db);
 }
 
-?>
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: (" . 
+    $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}?>

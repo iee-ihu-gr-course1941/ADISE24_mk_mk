@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numExistingRoles = $stmt_verify_role->num_rows;
     $stmt_verify_role->close();
 
-    $stmt = $mysqli->prepare("SELECT * FROM paiktes WHERE usernamePaikth = ?");
+    $stmt = $mysqli->prepare("SELECT * FROM ataxx.paiktes WHERE usernamePaikth = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
