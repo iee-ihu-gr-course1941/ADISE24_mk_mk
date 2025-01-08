@@ -450,7 +450,7 @@ function noValidMove(tag) {
         const nx = x + dx;
         const ny = y + dy;
 
-        // Check if the move is within bounds
+        // Check if the move is within bounds (only valid moves)
         if (nx >= 0 && nx < 7 && ny >= 0 && ny < 7) {
           const result = validmove(x, y, nx, ny); // Check validity using validmove function
           
@@ -466,25 +466,35 @@ function noValidMove(tag) {
 
       // Horizontal jump (2 steps in the x-direction)
       if (dx === 2 && dy === 0) {
-        const result = validmove(x, y, x + 2, y); // Check for horizontal jump
-        if (result.valid) {
-          return false; // Valid horizontal jump
+        const nx = x + 2;
+        if (nx >= 0 && nx < 7 && y >= 0 && y < 7) {
+          const result = validmove(x, y, nx, y); // Check for horizontal jump
+          if (result.valid) {
+            return false; // Valid horizontal jump
+          }
         }
       }
 
       // Vertical jump (2 steps in the y-direction)
       if (dy === 2 && dx === 0) {
-        const result = validmove(x, y, x, y + 2); // Check for vertical jump
-        if (result.valid) {
-          return false; // Valid vertical jump
+        const ny = y + 2;
+        if (x >= 0 && x < 7 && ny >= 0 && ny < 7) {
+          const result = validmove(x, y, x, ny); // Check for vertical jump
+          if (result.valid) {
+            return false; // Valid vertical jump
+          }
         }
       }
 
       // Diagonal jump (2 steps diagonally)
       if (dx === 2 && dy === 2) {
-        const result = validmove(x, y, x + 2, y + 2); // Check for diagonal jump
-        if (result.valid) {
-          return false; // Valid diagonal jump
+        const nx = x + 2;
+        const ny = y + 2;
+        if (nx >= 0 && nx < 7 && ny >= 0 && ny < 7) {
+          const result = validmove(x, y, nx, ny); // Check for diagonal jump
+          if (result.valid) {
+            return false; // Valid diagonal jump
+          }
         }
       }
     }
