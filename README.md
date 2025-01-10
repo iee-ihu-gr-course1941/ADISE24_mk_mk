@@ -87,7 +87,7 @@ password:	Ο κωδικός	yes
 
 passwordRepeat:	Επανάληψη κωδικού για επιβεβαίωση	yes
 
-token:	Το μοναδικό id κάθε παίκτη
+token:	Το token κάθε παίκτη
 
 
 
@@ -103,7 +103,7 @@ username:	To όνομα χρήστη
 
 password:	Ο κωδικός	
 
-token:	Το μοναδικό id κάθε παίκτη
+token:	Το token κάθε παίκτη
 
 
 
@@ -129,9 +129,13 @@ POST PHP/updateStatusBoard
 Json Data:
 
 rowst: Η γραμμή εκκίνησης
+
 columnst: Η στήλη εκκίνησης  
+
 rowdes: Η γραμμή τερματισμού
+
 columndes: Η στήλη τερματισμού
+
 tag: Το χρώμα του πιονιού που θα κινηθεί
 
 
@@ -199,7 +203,7 @@ POST PHP/gameStatus
 
 Json Data:
 
-id:	Το μοναδικό id κάθε παίκτη	
+id:	Το token κάθε παίκτη	
 
 end_of_game:	Μεταβλητή η οποια δείχνει εάν τελείωσε το παιχνίδι ή οχι	
 
